@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="sk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pikantné Menu - Vzrušujúci zážitok</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <div class="falling-bg" id="fallingBg"></div>
+    <div class="app-container">
+        <!-- ÚVODNÁ OBRAZOVKA -->
+        <div id="welcome-screen">
+            <h1>🔥 Pikantné Menu 🔥</h1>
+            <p class="subtitle">Vyberte si cestu k vzájomnému vyvrcholeniu</p>
+            <div class="carousel-container">
+                <div class="carousel-track" id="carouselTrack"></div>
+            </div>
+            <button class="welcome-btn" onclick="startRandomMode()">🎲 Náhodná poloha</button>
+            <button class="welcome-btn btn-secondary" onclick="openTimerMenu()">⏱️ Sex-Timer</button>
+            <button class="welcome-btn btn-game" onclick="startOnOnaGame()">🔥 Hra: On & Ona (Bez výhovoriek)</button>
+            <button class="welcome-btn btn-secondary" onclick="openBottleMenu()" style="background: linear-gradient(135deg, #7b2cbf 0%, #3c096c 100%);">🍾 3D Pikantná fľaša</button>
+        </div>
+
+        <!-- HLAVNÁ APLIKÁCIA -->
+        <div id="main-app" style="display: none;">
+            <h1>🔥 Pikantné Menu 🔥</h1>
+            <p class="subtitle" id="instruction-text">Pripravte sa na nezabudnuteľný zážitok</p>
+            <div class="grid-modes">
+                <button class="btn" onclick="startRandomMode()">🎲 Náhodná</button>
+                <button class="btn btn-secondary" onclick="openTimerMenu()">⏱️ Timer</button>
+                <button class="btn btn-game" onclick="startOnOnaGame()">🔥 On & Ona</button>
+                <button class="btn btn-secondary" onclick="openBottleMenu()" style="background: linear-gradient(135deg, #7b2cbf 0%, #3c096c 100%);">🍾 Fľaša</button>
+            </div>
+            <button class="btn back-btn" onclick="goHome()">⬅️ Späť na úvod</button>
+
+            <div class="card">
+                <!-- Náhodné číslo -->
+                <div id="roulette-display" style="display:none;">0</div>
+
+                <!-- 3D Fľaša -->
+                <div id="bottle-scene-container" class="bottle-scene" style="display:none;">
+                    <div class="bottle-pointer"></div>
+                    <div class="bottle-container" id="bottle3dElement">
+                        <div class="bottle-3d">
+                            <div class="bottle-neck"></div>
+                            <div class="bottle-cap"></div>
+                        </div>
+                    </div>
+                </div>
+                <div id="bottle-action-container" style="display:none; margin-bottom:15px;">
+                    <button class="btn btn-game" onclick="spinBottleReal()" style="font-size:1.1rem; padding:16px;">🍾 ZATOČIŤ FĽAŠOU</button>
+                </div>
+
+                <!-- Sex Timer -->
+                <div id="timer-section" style="display:none;">
+                    <div id="timer-display">01:30</div>
+                    <div class="timer-controls">
+                        <button class="btn btn-game" id="timer-toggle-btn" onclick="toggleTimer()">Spustiť výzvu</button>
+                        <button class="btn back-btn" onclick="stopTimer()">Reset</button>
+                    </div>
+                </div>
+
+                <!-- On & Ona interaktívna sekcia -->
+                <div id="on-ona-section" style="display:none;">
+                    <div class="rules-box" id="on-ona-rules">
+                        📜 <strong>Pravidlá hry On & Ona:</strong><br>
+                        1. Kliknutím na tlačidlo nižšie systém spravodlivo vyberie, kto z dvojice určuje pravidlá.<br>
+                        2. Zvolený vládca okamžite získa novú polohu.<br>
+                        3. Druhý partner musí vykonať slastnú pokutu alebo zmyselný poslušný úkon bez akýchkoľvek výhovoriek!
+                    </div>
+                    <div class="pulse-btn-container">
+                        <button class="mega-pulse-btn" onclick="executeOnOnaDraw()">👑 VYLOSOVAŤ VLÁDCE NOCÍ</button>
+                    </div>
+                </div>
+
+                <!-- Výsledok (Pozícia) -->
+                <div class="result-box" id="result-box">
+                    <h3 class="neon-title" id="result-title">Pozícia č. <span id="res-page">--</span></h3>
+                    <div class="fun-comment" id="res-desc">Načítavam zmyselný popis...</div>
+                    <div class="image-preview-container">
+                        <img id="res-img" src="" alt="Náhľad pozície">
+                    </div>
+                    <a id="res-pdf-link" href="#" target="_blank" class="pdf-link">📄 Zobraziť originál v PDF</a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="js/script.js"></script>
+</body>
+</html>
