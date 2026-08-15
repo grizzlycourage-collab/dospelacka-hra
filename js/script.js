@@ -10,58 +10,85 @@ const eroticDescriptions = [
 
 // --- ZÁMOK OBRAZOVKY ---
 function checkPassword() {
-    const input = document.getElementById('pass-input').value;
+    const inputField = document.getElementById('pass-input');
+    if (!inputField) return;
+    const input = inputField.value;
     const error = document.getElementById('error-msg');
     
     if (input === "365") {
-        document.getElementById('lock-screen').style.display = 'none';
-        document.getElementById('app-wrapper').style.display = 'block';
+        const lockScreen = document.getElementById('lock-screen');
+        const appWrapper = document.getElementById('app-wrapper');
+        if (lockScreen) lockScreen.style.display = 'none';
+        if (appWrapper) appWrapper.style.display = 'block';
     } else {
-        error.innerText = "Nesprávny kód!";
-        document.getElementById('pass-input').value = "";
+        if (error) error.innerText = "Nesprávny kód!";
+        inputField.value = "";
     }
 }
 
 document.addEventListener("DOMContentLoaded", () => {
+    // Podpora pre automatické odomknutie na mobile po zadaní 3 znakov alebo Enteru
+    const passInput = document.getElementById('pass-input');
+    if (passInput) {
+        passInput.addEventListener('input', (e) => {
+            if (e.target.value.length === 3) {
+                checkPassword();
+            }
+        });
+        passInput.addEventListener('keypress', (e) => {
+            if (e.key === 'Enter') {
+                checkPassword();
+            }
+        });
+    }
+
     const bg = document.getElementById('fallingBg');
-    const symbols = ['❤️', '🔥', '✨', '💖', '💋', '😈', '🍒'];
-    for(let i = 0; i < 15; i++) {
-        const span = document.createElement('div');
-        span.className = 'particle';
-        span.innerText = symbols[Math.floor(Math.random() * symbols.length)];
-        span.style.left = Math.random() * 100 + 'vw';
-        span.style.fontSize = (Math.random() * 1.5 + 1) + 'rem';
-        span.style.animationDuration = (Math.random() * 5 + 4) + 's';
-        bg.appendChild(span);
+    if (bg) {
+        const symbols = ['❤️', '🔥', '✨', '💖', '💋', '😈', '🍒'];
+        for(let i = 0; i < 15; i++) {
+            const span = document.createElement('div');
+            span.className = 'particle';
+            span.innerText = symbols[Math.floor(Math.random() * symbols.length)];
+            span.style.left = Math.random() * 100 + 'vw';
+            span.style.fontSize = (Math.random() * 1.5 + 1) + 'rem';
+            span.style.animationDuration = (Math.random() * 5 + 4) + 's';
+            bg.appendChild(span);
+        }
     }
 
     const track = document.getElementById('carouselTrack');
-    let slidesHTML = '';
-    for(let i = 0; i < 5; i++) {
-        let randImg = Math.floor(Math.random() * totalPages) + 1;
-        slidesHTML += `<div class="carousel-slide"><img src="images/page_${randImg}.jpg" alt="Slide"></div>`;
-    }
-    track.innerHTML = slidesHTML;
-    let idx = 0;
-    const slides = track.querySelectorAll('.carousel-slide');
-    if(slides.length > 0) {
-        setInterval(() => {
-            idx = (idx + 1) % slides.length;
-            track.style.transform = `translateX(-${idx * 100}%)`;
-        }, 3000);
+    if (track) {
+        let slidesHTML = '';
+        for(let i = 0; i < 5; i++) {
+            let randImg = Math.floor(Math.random() * totalPages) + 1;
+            slidesHTML += `<div class="carousel-slide"><img src="images/page_${randImg}.jpg" alt="Slide"></div>`;
+        }
+        track.innerHTML = slidesHTML;
+        let idx = 0;
+        const slides = track.querySelectorAll('.carousel-slide');
+        if(slides.length > 0) {
+            setInterval(() => {
+                idx = (idx + 1) % slides.length;
+                track.style.transform = `translateX(-${idx * 100}%)`;
+            }, 3000);
+        }
     }
 });
 
 function startApp() {
-    document.getElementById('welcome-screen').style.display = 'none';
-    document.getElementById('main-app').style.display = 'block';
+    const welcome = document.getElementById('welcome-screen');
+    const mainApp = document.getElementById('main-app');
+    if (welcome) welcome.style.display = 'none';
+    if (mainApp) mainApp.style.display = 'block';
 }
 
 function goHome() {
     stopTimer();
     hideAllWidgets();
-    document.getElementById('main-app').style.display = 'none';
-    document.getElementById('welcome-screen').style.display = 'flex';
+    const mainApp = document.getElementById('main-app');
+    const welcome = document.getElementById('welcome-screen');
+    if (mainApp) mainApp.style.display = 'none';
+    if (welcome) welcome.style.display = 'flex';
 }
 
 function playSensualChime() {
