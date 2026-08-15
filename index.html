@@ -2,7 +2,7 @@
 <html lang="sk">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>Pikantné Menu - Vzrušujúci zážitok</title>
     <link rel="stylesheet" href="css/style.css">
 </head>
@@ -14,9 +14,11 @@
         <div class="lock-card">
             <h2>🔑 Vstup do vášne</h2>
             <p>Zadajte prístupový kód:</p>
-            <input type="password" id="pass-input" maxlength="3" placeholder="---">
-            <button class="btn" onclick="checkPassword()">OTVORIŤ</button>
-            <p id="error-msg" style="color:red; margin-top:10px;"></p>
+            <form onsubmit="event.preventDefault(); checkPassword();">
+                <input type="password" id="pass-input" maxlength="3" placeholder="---" autocomplete="off" pattern="[0-9]*" inputmode="numeric">
+                <button type="button" class="btn" id="lock-submit-btn" onclick="checkPassword()" onpointerdown="checkPassword()">OTVORIŤ</button>
+            </form>
+            <p id="error-msg" style="color:#ff3366; font-weight:bold; margin-top:10px;"></p>
         </div>
     </div>
 
