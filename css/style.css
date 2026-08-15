@@ -115,3 +115,44 @@ p.subtitle { font-size: 0.95rem; color: var(--secondary); margin-bottom: 25px; f
 .image-preview-container img { width: 100%; height: auto; position: absolute; top: 0; left: 0; clip-path: inset(0 0 15% 0); }
 .pdf-link { display: inline-block; background: linear-gradient(135deg, #2ed573 0%, #10ac84 100%); color: #fff; text-decoration: none; padding: 10px 20px; border-radius: 12px; font-size: 0.9rem; font-weight: bold; }
 .timer-controls { display: flex; gap: 12px; }
+
+/* Zámok obrazovka */
+.full-center {
+    position: fixed;
+    top: 0; left: 0; width: 100%; height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 999;
+    background: rgba(5, 5, 10, 0.95);
+}
+.lock-card {
+    background: #121224;
+    padding: 30px;
+    border-radius: 20px;
+    text-align: center;
+    border: 1px solid #ff007f;
+    width: 80%;
+    max-width: 300px;
+    box-shadow: 0 0 30px rgba(255, 0, 127, 0.4);
+}
+.lock-card h2 {
+    color: #fff;
+    margin-bottom: 10px;
+}
+.lock-card p {
+    color: #b0b0d0;
+    font-size: 0.9rem;
+}
+input#pass-input {
+    width: 100px;
+    padding: 12px;
+    font-size: 1.5rem;
+    text-align: center;
+    border-radius: 10px;
+    border: 1px solid #333;
+    margin: 15px 0;
+    background: #000;
+    color: #fff;
+    letter-spacing: 4px;
+}
