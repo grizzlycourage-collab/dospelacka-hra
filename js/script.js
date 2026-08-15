@@ -8,6 +8,20 @@ const eroticDescriptions = [
     "Harmonické a pritom nesmierne vzrušujúce prepojenie tiel."
 ];
 
+// --- ZÁMOK OBRAZOVKY ---
+function checkPassword() {
+    const input = document.getElementById('pass-input').value;
+    const error = document.getElementById('error-msg');
+    
+    if (input === "365") {
+        document.getElementById('lock-screen').style.display = 'none';
+        document.getElementById('app-wrapper').style.display = 'block';
+    } else {
+        error.innerText = "Nesprávny kód!";
+        document.getElementById('pass-input').value = "";
+    }
+}
+
 document.addEventListener("DOMContentLoaded", () => {
     const bg = document.getElementById('fallingBg');
     const symbols = ['❤️', '🔥', '✨', '💖', '💋', '😈', '🍒'];
